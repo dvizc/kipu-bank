@@ -1,0 +1,261 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_bankCap",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_MAX_RETIRO",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "monto",
+						"type": "uint256"
+					}
+				],
+				"name": "Depositado",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "monto",
+						"type": "uint256"
+					}
+				],
+				"name": "Retiro",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "MAX_RETIRO",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "bankCap",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "deposit",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "depositoContador",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "obtenerSaldo",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_monto",
+						"type": "uint256"
+					}
+				],
+				"name": "retiro",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "retiroContador",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Dome",
+			"events": {
+				"Depositado(address,uint256)": {
+					"params": {
+						"monto": "La cantidad de ETH depositada.",
+						"user": "La dirección del usuario que realiza el depósito."
+					}
+				},
+				"Retiro(address,uint256)": {
+					"params": {
+						"monto": "La cantidad de ETH retirada.",
+						"user": "La dirección del usuario que realiza el retiro."
+					}
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"constructor": {
+					"params": {
+						"_MAX_RETIRO": "El límite máximo por transacción de retiro.",
+						"_bankCap": "El límite total de depósitos para el contrato."
+					}
+				},
+				"obtenerSaldo(address)": {
+					"params": {
+						"_user": "La dirección del usuario a consultar."
+					},
+					"returns": {
+						"_0": "El saldo actual en wei del usuario."
+					}
+				},
+				"retiro(uint256)": {
+					"params": {
+						"_monto": "La cantidad de ETH a retirar."
+					}
+				}
+			},
+			"title": "KipuBank",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"Depositado(address,uint256)": {
+					"notice": "Se emite cuando un usuario deposita fondos exitosamente."
+				},
+				"Retiro(address,uint256)": {
+					"notice": "Se emite cuando un usuario retira fondos exitosamente."
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"MAX_RETIRO()": {
+					"notice": "Umbral máximo de retiro por transacción para cualquier usuario."
+				},
+				"bankCap()": {
+					"notice": "Límite máximo de ETH que el banco puede almacenar en total."
+				},
+				"constructor": {
+					"notice": "Inicializa el contrato estableciendo los límites inmutables."
+				},
+				"deposit()": {
+					"notice": "Permite a un usuario depositar ETH en su bóveda personal. La función revertirá si se intenta depositar 0, o si el depósito excede la capacidad total del banco."
+				},
+				"depositoContador()": {
+					"notice": "Contador del número total de depósitos realizados en el contrato."
+				},
+				"obtenerSaldo(address)": {
+					"notice": "Obtiene el saldo de la bóveda de un usuario específico."
+				},
+				"retiro(uint256)": {
+					"notice": "Permite a un usuario retirar una cantidad específica de ETH de su bóveda."
+				},
+				"retiroContador()": {
+					"notice": "Contador del número total de retiros realizados en el contrato."
+				}
+			},
+			"notice": "Este contrato implementa una bóveda personal para ETH.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/KipuBank.sol": "KipuBank"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/KipuBank.sol": {
+			"keccak256": "0x0f2d91e7f27c15f76ffc8d850de0c620701b1a420bdbd0bed5794af4d170779c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1128e5768b25982a9568bf3b0b37a745a3c1a29346273205f27f8f6c833b2644",
+				"dweb:/ipfs/QmSVTqezqjE6DPBLrsCqg9X8Cvc2umak5mkh6PVfV2ryib"
+			]
+		}
+	},
+	"version": 1
+}
